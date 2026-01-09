@@ -12,6 +12,25 @@ Mastery Check: Can your script handle a corrupted JSON file without crashing? (H
 '''
 
 import json
+import logging
+
+def add_stuff(a: int, b: int):
+    return a + b
+
+def read_file():
+    try:
+        with open('./tasks,json', 'r', encoding='utf-8') as file:
+            tasks = json.load(file)
+            tasks_list = tasks.get('List', [])
+    except:
+        print("some error")
+
+    return tasks_list
+
+def write_file():
+
+    return "Successfully wrote to file."
+
 
 def main():
 
