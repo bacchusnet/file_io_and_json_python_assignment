@@ -46,7 +46,7 @@ def write_file(data, user_input):
             json.dump(data_json, file)
     except:
         print('error')
-        
+
     return "Successfully wrote to file."
 
 
@@ -56,7 +56,7 @@ def main():
         user_input = input("Enter something...\n")
 
         if user_input == "exit":
-            print("Exiting program...Goodbye")
+            logging.info("Exiting program...")
             break
         else:
             try:
@@ -68,6 +68,7 @@ def main():
                     tasks_list.append(user_input)
                     tasks_json = {"List": tasks_list}
                     json.dump(tasks_json, file)
+                    logging.info("Writing to file...")
 
             except FileNotFoundError:
                 print('error occured file not found')   
