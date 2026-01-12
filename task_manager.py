@@ -13,9 +13,19 @@ Mastery Check: Can your script handle a corrupted JSON file without crashing? (H
 
 import json
 import logging
+import sys
+
+
+logging.basicConfig(
+    level=logging.INFO, # Set the minimum level to log (INFO, DEBUG, WARNING, etc.)
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+
 
 def add_stuff(a: int, b: int):
     return a + b
+
 
 def read_file():
     try:
@@ -27,8 +37,16 @@ def read_file():
 
     return tasks_list
 
-def write_file():
 
+def write_file(data, user_input):
+    try:
+        with open('./tasks.json', 'r', encoding='utf-8') as file:
+            data.append(user_input)
+            data_json = {"List": data}
+            json.dump(data_json, file)
+    except:
+        print('error')
+        
     return "Successfully wrote to file."
 
 
